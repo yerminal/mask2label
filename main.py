@@ -2,7 +2,7 @@ import cv2
 import os
 class_num = 1
 mask_path = "Dataset/TRAINING/ISKEMI/MASK"
-mask_label_path = "Dataset/TRAINING/ISKEMI/MASK_LABELS"
+mask_label_path = "Dataset/TRAINING/ISKEMI/MASK_LABELS" # You don't have to create a folder, the code will do it.
 
 try:
     # Create target Directory
