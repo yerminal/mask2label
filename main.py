@@ -5,7 +5,6 @@ mask_path = "Dataset/TRAINING/ISKEMI/MASK"
 mask_label_path = "Dataset/TRAINING/ISKEMI/MASK_LABELS" # You don't have to create a folder, the code will do it.
 
 try:
-    # Create target Directory
     os.mkdir(mask_label_path)
     print("Directory ", mask_label_path, " Created ")
 except FileExistsError:
