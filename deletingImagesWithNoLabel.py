@@ -14,5 +14,5 @@ for folder_path in folder_path_list:
     for filename in os.listdir(folder_path):
         if folder_path + "/" + filename not in frames:
             count = count + 1
-            print(count)
+            print(count, "  ", folder_path + "/" + filename)
             os.remove(folder_path + "/" + filename)
