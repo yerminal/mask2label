@@ -1,3 +1,4 @@
+# Run it before creating txt files because it will delete them.
 import json
 import os
 
