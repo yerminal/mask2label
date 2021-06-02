@@ -1,4 +1,4 @@
-# Run it before creating txt files because it will delete them.
+# Run it before creating txt files because it would delete them.
 import json
 import os
 
