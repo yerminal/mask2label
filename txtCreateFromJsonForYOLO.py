@@ -5,14 +5,12 @@ images_path = './'
 file_path = "./veriler.json"
 countForTxt = 0
 countForImage = 0
-countForKey = 0
-keyerror = []
 counter = {"B160519_V1_K1": 0, "T190619_V1_K1": 0, "T190619_V2_K1": 0, "T190619_V3_K1": 0}
 obj_class = {"arac": 0, "yaya": 1}
 
 with open(file_path) as json_file:
     data = json.load(json_file)
-    for jsn in data['frameler']:
+    for order, jsn in enumerate(data['frameler']):
         url = images_path + jsn['frame_url']
         counter[str(jsn['frame_url'])[:13]] += 1
         countForImage += 1
@@ -20,7 +18,6 @@ with open(file_path) as json_file:
         image = cv2.imread(url, cv2.IMREAD_UNCHANGED)
         h_img, w_img, _ = image.shape
         if len(objs) != 0:
-            print(url[:-4], countForTxt)
             with open(url[:-4] + ".txt", "w") as f:
                 for o in objs:
                     try:
@@ -30,16 +27,12 @@ with open(file_path) as json_file:
                         if o != objs[-1]:
                             f.write("\n")
                     except KeyError:
-                        countForKey = countForKey + 1
-                        keyerror.append(url)
                         continue
             countForTxt = countForTxt + 1
-        else:
-            print(url[:-4])
+        if order % 50 == 0:
+            print(url + "...")
 
-print(f"The number of created txt files: {countForTxt}")
+print(f"\nThe number of created txt files: {countForTxt}")
 print(f"The number of total images: {countForImage}")
 print(f"The number of total background images: {countForImage-countForTxt}\n")
 print(counter)
-
-print(countForKey)
