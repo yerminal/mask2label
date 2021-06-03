@@ -9,7 +9,7 @@ ratios = [0.7, 0.1]  # train, val
 filenames = [i for i in os.listdir(source_path) if i[-4:] == ".jpg"]
 filenames.sort()
 random.seed(45)
-random.shuffle(filenames)
+random.shuffle(filenames)  # shuffles the ordering of filenames (deterministic given the chosen seed)
 
 split_1 = int(ratios[0] * len(filenames))
 split_2 = split_1 + int(ratios[1] * len(filenames))
@@ -53,3 +53,5 @@ for i in test_filenames:
                    main_folder + "/" + subfolders[2] + "/" + i[:-4] + ".txt")
     except FileNotFoundError:
         continue
+os.rmdir(source_path)
+print("Done...")
