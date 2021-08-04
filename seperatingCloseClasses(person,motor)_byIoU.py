@@ -54,7 +54,7 @@ for order, filename in enumerate(os.listdir("VisDrone2019-MOT-train/annotations/
             except KeyError:
                 frameDict[lst[0]] = [",".join(lst[1:])]
     for frameID in frameDict.keys():
-        nameIMG = "".join(["0" for _ in range(7 - len(frameID))]) + frameID
+        nameIMG = "0" * (7 - len(frameID)) + frameID
         pathIMG = "VisDrone2019-MOT-train/sequences/" + filename[:-4] + "/" + nameIMG + ".jpg"
         img = cv2.imread(pathIMG)
 
