@@ -13,6 +13,8 @@ colors = {0: (192, 192, 192), 1: (0, 0, 255), 2: (12, 32, 255), 3: (54, 234, 100
 classes_model = {"car": 0, "van": 0, "truck": 0, "bus": 0, "motor": 0, "pedestrian": 1, "people": 1}
 
 for order, filename in enumerate(os.listdir("VisDrone2019-MOT-train/annotations/")):
+    print("Order =", order)
+    print("Folder =", filename[:-4])
     frameDict = dict()
     with open("VisDrone2019-MOT-train/annotations/" + filename, "r") as f:
         lines = f.read().splitlines()
@@ -33,6 +35,18 @@ for order, filename in enumerate(os.listdir("VisDrone2019-MOT-train/annotations/
             cv2.rectangle(img, (x, y), (x + w, y + h), colors[classOBJ], 1)
             cv2.putText(img, classes_dataset[classOBJ], (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX,
                         0.5, colors[classOBJ], 2)
-        cv2.imshow("test", img)
+        if img.shape[1] * img.shape[0] > 2000000:
+            scale_percent = 70  # percent of original size
+            if img.shape[1] * img.shape[0] > 4000000:
+                scale_percent = 50
+            width = int(img.shape[1] * scale_percent / 100)
+            height = int(img.shape[0] * scale_percent / 100)
+            dim = (width, height)
+            # resize image
+            resized = cv2.resize(img, dim, interpolation=cv2.INTER_AREA)
+            img = resized
+        cv2.namedWindow("Output")
+        cv2.moveWindow("Output", 40, 30)
+        cv2.imshow("Output", img)
         cv2.waitKey(17)  # 60 FPS
 cv2.destroyAllWindows()
