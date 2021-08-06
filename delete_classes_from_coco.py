@@ -47,5 +47,5 @@ for filename in label_direc:
 print("All done.")
 print(f"The number of remaining images is {total_image - count_deleted}.")
 print(f"The number of deleted images is {count_deleted}.")
-print("The sample numbver of each classes:")
+print("The sample number of each classes:")
 print(count_classes_model)
