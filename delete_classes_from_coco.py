@@ -1,6 +1,5 @@
 """
 This script is deleting unnecessary classes and changing class ids with the intended number.
-If you want to edit the directory paths, you have to edit each one of them by hand.
 """
 import os
 
