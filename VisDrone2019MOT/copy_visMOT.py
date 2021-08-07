@@ -8,7 +8,7 @@ import re
 import winsound
 
 source = "sequences"
-destination = r"D:\UlasimDataYarisma\ALLdatasets\VisDrone2019-MOT-train\new"
+destination = r"D:\UlasimDataYarisma\ALLdatasets\VisDrone2019-MOT-test-dev\new"
 
 freq = 300
 dur = 1000
@@ -30,7 +30,8 @@ for foldername in os.listdir(source):
             count += 1
         print(f"{foldername} - i")
         i += 2 * skip
+
 print("\nAll done.\n")
-for _ in range(5):
-    winsound.Beep(freq, dur)
+winsound.Beep(freq, dur)
 print("TOTAL IMAGES COPIED =", str(count))
+
