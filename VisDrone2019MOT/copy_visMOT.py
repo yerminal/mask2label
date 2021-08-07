@@ -1,3 +1,7 @@
+"""
+Copying images and moving them to the intended destination.
+And desired number of forward frames can be skipped.
+"""
 import shutil
 import os
 import re
