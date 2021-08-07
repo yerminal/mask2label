@@ -5,24 +5,27 @@ If you want to edit the directory paths, you have to edit each one of them by ha
 import os
 
 coco_class_list = ['aeroplane', 'apple', 'backpack', 'banana', 'baseball bat', 'baseball glove', 'bear', 'bed', 'bench',
-                   'bicycle', 'bird', 'boat', 'book', 'bottle', 'bowl', 'broccoli', 'bus', 'cake', 'car', 'carrot', 'cat',
-                   'cell phone', 'chair', 'clock', 'cow', 'cup', 'diningtable', 'dog', 'donut', 'elephant', 'fire hydrant',
-                   'fork', 'frisbee', 'giraffe', 'hair drier', 'handbag', 'horse', 'hot dog', 'keyboard', 'kite', 'knife',
-                   'laptop', 'microwave', 'motorbike', 'mouse', 'orange', 'oven', 'parking meter', 'person', 'pizza', 'pottedplant',
-                   'refrigerator', 'remote', 'sandwich', 'scissors', 'sheep', 'sink', 'skateboard', 'skis', 'snowboard', 'sofa',
-                   'spoon', 'sports ball', 'stop sign', 'suitcase', 'surfboard', 'teddy bear', 'tennis racket', 'tie', 'toaster',
-                   'toilet', 'toothbrush', 'traffic light', 'train', 'truck', 'tvmonitor', 'umbrella', 'vase', 'wine glass', 'zebra']
+                   'bicycle', 'bird', 'boat', 'book', 'bottle', 'bowl', 'broccoli', 'bus', 'cake', 'car', 'carrot',
+                   'cat', 'cell phone', 'chair', 'clock', 'cow', 'cup', 'diningtable', 'dog', 'donut', 'elephant',
+                   'fire hydrant', 'fork', 'frisbee', 'giraffe', 'hair drier', 'handbag', 'horse', 'hot dog',
+                   'keyboard', 'kite', 'knife', 'laptop', 'microwave', 'motorbike', 'mouse', 'orange', 'oven',
+                   'parking meter', 'person', 'pizza', 'pottedplant', 'refrigerator', 'remote', 'sandwich', 'scissors',
+                   'sheep', 'sink', 'skateboard', 'skis', 'snowboard', 'sofa', 'spoon', 'sports ball', 'stop sign',
+                   'suitcase', 'surfboard', 'teddy bear', 'tennis racket', 'tie', 'toaster', 'toilet', 'toothbrush',
+                   'traffic light', 'train', 'truck', 'tvmonitor', 'umbrella', 'vase', 'wine glass', 'zebra']
 
 wanted_classes = ["bus", "car", "person", "train", "truck", "motorbike"]  # The classes that is not going to be deleted.
 
-forbidden_classes = ["apple", "banana", "bed", "bear", "book", "bottle", "bowl", "broccoli", "cake", "carrot", "cell phone",
-                     "chair", "clock", "cup", "diningtable", "donut", "elephant", "fork", "giraffe", "hair drier", "horse", "hot dog",
-                     "keyboard", "kite", "knife", "laptop", "microwave", "mouse", "orange", "oven", "pizza", "pottedplant",
-                     "refrigerator", "remote", "sandwich", "scissors", "sink", "skis", "snowboard", "sofa", "spoon", "sports ball",
-                     "surfboard", "teddy bear", "tennis racket", "tie", "toaster", "toilet", "toothbrush", "tvmonitor", "vase", "wine glass", "zebra"]
+forbidden_classes = ["apple", "banana", "bed", "bear", "book", "bottle", "bowl", "broccoli", "cake", "carrot",
+                     "cell phone", "chair", "clock", "cup", "diningtable", "donut", "elephant", "fork", "giraffe",
+                     "hair drier", "horse", "hot dog", "keyboard", "kite", "knife", "laptop", "microwave", "mouse",
+                     "orange", "oven", "pizza", "pottedplant", "refrigerator", "remote", "sandwich", "scissors", "sink",
+                     "skis", "snowboard", "sofa", "spoon", "sports ball", "surfboard", "teddy bear", "tennis racket",
+                     "tie", "toaster", "toilet", "toothbrush", "tvmonitor", "vase", "wine glass", "zebra"]
 
 index_of_classes = [str(coco_class_list.index(i)) for i in wanted_classes]
-classes_model = {"car": 0, "van": 0, "truck": 0, "bus": 0, "motor": 0, "motorbike": 0, "train": 0, "pedestrian": 1, "people": 1, "person": 1}
+classes_model_ids = {"car": 0, "van": 0, "truck": 0, "bus": 0, "motor": 0, "motorbike": 0, "train": 0, "pedestrian": 1,
+                     "people": 1, "person": 1}
 count_classes_model = {"car": 0, "truck": 0, "bus": 0, "motorbike": 0, "train": 0, "person": 0}
 
 count = 0
@@ -50,7 +53,7 @@ for filename in label_direc:
                 lst = i.split(" ")
                 if lst[0] in index_of_classes:
                     count_classes_model[coco_class_list[int(lst[0])]] += 1
-                    line = str(classes_model[coco_class_list[int(lst[0])]]) + " " + " ".join(lst[1:])
+                    line = str(classes_model_ids[coco_class_list[int(lst[0])]]) + " " + " ".join(lst[1:])
                     wanted_lines.append(line)
             f.write("\n".join(wanted_lines))
     if os.stat("train/labels/" + filename).st_size == 0:
