@@ -46,7 +46,7 @@ if path_images[-1] == "/":
 
 for filename in label_direc:
     if count % 100 == 0:
-        print("Editing " + filename + " ...")
+        print("Editing " + filename + "...")
     count += 1
     wanted_lines = []
     temp = count_classes_model.copy()
