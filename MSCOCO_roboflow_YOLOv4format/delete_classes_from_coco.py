@@ -63,7 +63,7 @@ for filename in label_direc:
                 temp[coco_class_list[int(lst[0])]] += 1
                 line = str(classes_model_ids[coco_class_list[int(lst[0])]]) + " " + " ".join(lst[1:])
                 wanted_lines.append(line)
-        if write_file:
+        if write_file and wanted_lines != []:
             count_classes_model = temp.copy()
             f.write("\n".join(wanted_lines))
     if os.stat(path_labels + "/" + filename).st_size == 0:
